@@ -1,19 +1,20 @@
 import sys
+import gi
+gi.require_version("Gtk", "3.0")
 from PySide2.QtWidgets import QApplication
 
-from src.gui.qt.window import Window
-
+from gui.qt.window import QtWindow
+from gui.gtk.window import GtkWindow
 
 if __name__ == "__main__":
 	if sys.argv[1] == 'Qt':
-		app = QApplication(sys.argv)
-
-		widget = Window()
-		widget.resize(1200, 800)
-		widget.show()
-
-		sys.exit(app.exec_())
+		window = QtWindow(QApplication(sys.argv))
 	elif sys.argv[1] == 'GTK':
-		pass
+		window = GtkWindow()
 	else:
 		print("Wybierz bibliotekę graficzną poprzez podanie argumentu: 'Qt' lub 'GTK'")
+		exit()
+
+	window.resize(1200, 800)
+	window.set_title("Notatki")
+	window.show()
