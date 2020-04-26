@@ -1,9 +1,9 @@
 class Window(object):
 	def resize(self, width, height):
-		pass
+		pass  # abstract
 
 	def set_title(self, title):
-		pass
+		pass  # abstract
 
 	def show(self):
-		pass
+		pass  # abstract
