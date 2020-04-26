@@ -13,8 +13,6 @@ class QtWindow(Window, QWidget):
 		self.application = application
 
 		self.layout = QVBoxLayout()
-		self.layout.setContentsMargins(0, 0, 0, 0)
-		self.layout.setSpacing(0)
 		self.setLayout(self.layout)
 
 		self.menu_bar = QMenuBar()
@@ -37,7 +35,7 @@ class QtWindow(Window, QWidget):
 		self.notes.addWidget(Note('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque sed lacinia facilisis, arcu magna '
 		                          'porttitor sapien, ac dignissim tortor sapien in dolor. In id neque id lacus interdum vehicula.'), 0, 0)
 		item_button = QPushButton("Open")
-		self.notes.addWidget(item_button, 0, 1)
+		self.notes.addWidget(item_button, 1, 0)
 		item_button.clicked.connect(lambda: NotePopup(self).exec_())
 
 	def resize(self, width, height):

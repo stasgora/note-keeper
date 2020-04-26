@@ -1,5 +1,4 @@
 from PySide2.QtWidgets import *
-from PySide2 import QtCore
 
 
 class NotePopup(QDialog):
