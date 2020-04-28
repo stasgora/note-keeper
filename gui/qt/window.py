@@ -3,8 +3,8 @@ import sys
 from PySide2.QtWidgets import *
 
 from gui.qt.note import Note
-from gui.qt.note_popup import NotePopup
 from gui.window import Window
+from logic.note_loader import load_note
 
 
 class QtWindow(Window, QWidget):
@@ -26,17 +26,13 @@ class QtWindow(Window, QWidget):
 		self.menu_bar.addMenu(QMenu("Plik"))
 
 	def draw_notes(self):
-		self.layout.addLayout(self.notes, 1)
+		self.layout.addLayout(self.notes)
 		self.layout.addStretch(1)
 		self.notes.setMargin(5)
 		#self.notes.setColumnMinimumWidth(20)
 		#self.notes.setRowMinimumHeight(20)
 
-		self.notes.addWidget(Note('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum, neque sed lacinia facilisis, arcu magna '
-		                          'porttitor sapien, ac dignissim tortor sapien in dolor. In id neque id lacus interdum vehicula.'), 0, 0)
-		item_button = QPushButton("Open")
-		self.notes.addWidget(item_button, 1, 0)
-		item_button.clicked.connect(lambda: NotePopup(self).exec_())
+		self.notes.addWidget(Note(load_note()), 0, 0)
 
 	def resize(self, width, height):
 		QWidget.resize(self, width, height)
