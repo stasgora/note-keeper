@@ -6,7 +6,7 @@ from gi.repository import Gtk
 from logic.note_loader import load_note
 
 
-class GtkWindow(Window, Gtk.Window):
+class GtkWindow(Window, Gtk.ApplicationWindow):
 	def __init__(self):
 		Gtk.Window.__init__(self)
 		self.layout = Gtk.VBox()
