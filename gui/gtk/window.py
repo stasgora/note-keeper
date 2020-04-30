@@ -3,7 +3,7 @@ from gui.window import Window
 
 from gi.repository import Gtk
 
-from logic.note_loader import load_note
+from logic.note_handler import load_note
 
 
 class GtkWindow(Window, Gtk.ApplicationWindow):

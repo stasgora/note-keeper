@@ -4,7 +4,7 @@ from PySide2.QtWidgets import *
 
 from gui.qt.note import Note
 from gui.window import Window
-from logic.note_loader import load_note
+from logic.note_handler import load_note
 
 
 class QtWindow(Window, QWidget):

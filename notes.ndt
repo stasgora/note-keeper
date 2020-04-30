@@ -1,4 +1,7 @@
-{
-	"title": "Note",
-	"content": "This is a test note, don't read me!"
-}
+[
+	{
+		"title": "Note",
+		"content": "This is a test note, don't read me!",
+		"id": 0
+	}
+]
