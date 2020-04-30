@@ -2,13 +2,13 @@ import PySide2
 from PySide2.QtGui import QColor, Qt
 from PySide2.QtWidgets import QLabel, QGraphicsDropShadowEffect, QDialog
 
+from gui.note import Note
 from gui.qt.note_popup import QtNotePopup
-from logic.note_handler import save_note
 
 
-class Note(QLabel):
+class QtNote(QLabel, Note):
 	def __init__(self, note):
-		super(Note, self).__init__()
+		super(QtNote, self).__init__()
 		self.note = note
 		self.update_content()
 		self.setWordWrap(True)
@@ -35,6 +35,4 @@ class Note(QLabel):
 		super().mouseReleaseEvent(ev)
 		edit_note = self.note.copy()
 		if QtNotePopup(edit_note, self).exec_() == QDialog.Accepted:
-			self.note = edit_note
-			self.update_content()
-			save_note(self.note)
+			self.update_note(edit_note)

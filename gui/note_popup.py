@@ -1,4 +1,3 @@
-
 class NotePopup(object):
 	@staticmethod
 	def get_popup_title(note):

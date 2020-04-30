@@ -8,6 +8,7 @@ from logic.note_handler import set_title
 class QtNotePopup(QDialog, NotePopup):
 	def __init__(self, note, parent):
 		super(QtNotePopup, self).__init__(parent)
+		self.note = note
 		width = 400
 		height = 300
 		self.setWindowTitle(self.get_popup_title(note))
@@ -18,14 +19,17 @@ class QtNotePopup(QDialog, NotePopup):
 		self.layout = QVBoxLayout()
 		self.setLayout(self.layout)
 
-		self.title_field = QLineEdit()
-		self.title_field.setPlaceholderText('Tytuł')
-		self.title_field.setText(note['title'])
-		self.title_field.textChanged.connect(lambda title: set_title(note, title))
-		self.layout.addWidget(self.title_field)
+		self.add_title_field()
 		self.layout.addStretch(1)
 
 		self.add_buttons()
+
+	def add_title_field(self):
+		title_field = QLineEdit()
+		title_field.setPlaceholderText('Tytuł')
+		title_field.setText(self.note['title'])
+		title_field.textChanged.connect(lambda title: set_title(self.note, title))
+		self.layout.addWidget(title_field)
 
 	def add_buttons(self):
 		container = QHBoxLayout()

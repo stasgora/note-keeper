@@ -2,7 +2,7 @@ import sys
 
 from PySide2.QtWidgets import *
 
-from gui.qt.note import Note
+from gui.qt.note import QtNote
 from gui.window import Window
 from logic.note_handler import load_note
 
@@ -32,7 +32,7 @@ class QtWindow(Window, QWidget):
 		#self.notes.setColumnMinimumWidth(20)
 		#self.notes.setRowMinimumHeight(20)
 
-		self.notes.addWidget(Note(load_note()), 0, 0)
+		self.notes.addWidget(QtNote(load_note()), 0, 0)
 
 	def resize(self, width, height):
 		QWidget.resize(self, width, height)

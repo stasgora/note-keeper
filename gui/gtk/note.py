@@ -1,15 +1,16 @@
 from gi.repository import Gtk, Gdk
 
 from gui.gtk.note_popup import GtkNotePopup
+from gui.note import Note
 
 
-class Note(Gtk.EventBox):
+class GtkNote(Gtk.EventBox, Note):
 	def __init__(self, note, window):
-		super(Note, self).__init__()
+		super(GtkNote, self).__init__()
 		self.note = note
 		self.window = window
 		self.label = Gtk.Label()
-		self.label.set_markup(self.parse_note_data(note))
+		self.update_content()
 		self.add(self.label)
 		# self.note.set_selectable(True)
 		self.label.set_line_wrap(True)
@@ -34,11 +35,13 @@ class Note(Gtk.EventBox):
 	def set_cursor(self, cursor):
 		self.window.get_window().set_cursor(Gdk.Cursor(cursor))
 
-	def parse_note_data(self, note):
-		return '<b>{0}</b>\n\n{1}'.format(note['title'], note['content'])
+	def update_content(self):
+		self.label.set_markup('<b>{0}</b>\n\n{1}'.format(self.note['title'], self.note['content']))
 
 	def button_event(self, widget, event):
 		if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:  # _2BUTTON_PRESS
-			popup = GtkNotePopup(self.note, self.window)
-			popup.run()
+			edit_note = self.note.copy()
+			popup = GtkNotePopup(edit_note, self.window)
+			if popup.run() == Gtk.ResponseType.APPLY:
+				self.update_note(edit_note)
 			popup.destroy()

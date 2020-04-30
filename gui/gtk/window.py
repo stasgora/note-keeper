@@ -1,4 +1,4 @@
-from gui.gtk.note import Note
+from gui.gtk.note import GtkNote
 from gui.window import Window
 
 from gi.repository import Gtk
@@ -17,7 +17,7 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 
 	def draw_notes(self):
 		self.layout.pack_end(self.notes, True, True, 0)
-		self.notes.attach(Note(load_note(), self), 0, 0, 1, 1)
+		self.notes.attach(GtkNote(load_note(), self), 0, 0, 1, 1)
 
 	def resize(self, width, height):
 		Gtk.Window.resize(self, width, height)
