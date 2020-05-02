@@ -6,7 +6,8 @@ from logic.note_handler import set_note_field
 
 class GtkNotePopup(Gtk.Dialog, NotePopup):
 	def __init__(self, note, parent):
-		Gtk.Dialog.__init__(self, self.get_popup_title(note), parent, 0, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.APPLY))
+		Gtk.Dialog.__init__(self, self.get_popup_title(note), parent, 0,
+		                    (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_REMOVE, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.APPLY))
 		self.note = note
 		width = 400
 		height = 300
