@@ -12,7 +12,7 @@ class QtNotePopup(QDialog, NotePopup):
 		self.note = note
 		width = 400
 		height = 300
-		self.setWindowTitle(self.get_popup_title(note))
+		self.set_window_title(self.get_popup_title(note))
 		# self.setWindowFlags(QtCore.Qt.CustomizeWindowHint)
 		self.move((parent.width() - width) / 2, (parent.height() - height) / 2)
 		self.resize(width, height)
@@ -29,11 +29,12 @@ class QtNotePopup(QDialog, NotePopup):
 		title_field = QLineEdit()
 		title_field.setPlaceholderText('Tytuł')
 		title_field.setText(self.note['title'])
-		title_field.textChanged.connect(lambda title: set_note_field(self.note, 'title', title))
+		title_field.textChanged.connect(lambda title: self.set_note_title(title))
 		self.layout.addWidget(title_field)
 
 	def add_note_field(self):
 		note_field = QPlainTextEdit()
+		note_field.setLineWrapMode(QPlainTextEdit.NoWrap)
 		note_field.setPlaceholderText('Notatka')
 		note_field.setPlainText(self.note['content'])
 		note_field.textChanged.connect(lambda: set_note_field(self.note, 'content', note_field.toPlainText()))
@@ -54,3 +55,6 @@ class QtNotePopup(QDialog, NotePopup):
 		if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
 			return
 		super(QtNotePopup, self).keyPressEvent(event)
+
+	def set_window_title(self, title):
+		self.setWindowTitle(title)

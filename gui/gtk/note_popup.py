@@ -21,7 +21,7 @@ class GtkNotePopup(Gtk.Dialog, NotePopup):
 		title_field = Gtk.Entry()
 		title_field.set_text(self.note['title'])
 		title_field.set_placeholder_text('Tytuł')
-		title_field.connect('changed', lambda field: set_note_field(self.note, 'title', field.get_text()))
+		title_field.connect('changed', lambda field: self.set_note_title(field.get_text()))
 		self.layout.add(title_field)
 
 	def add_note_field(self):
@@ -34,3 +34,6 @@ class GtkNotePopup(Gtk.Dialog, NotePopup):
 		buffer.set_text(self.note['content'])
 		buffer.connect('changed', lambda field: set_note_field(self.note, 'content', buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), True)))
 		self.layout.pack_start(scroll_view, True, True, 0)
+
+	def set_window_title(self, title):
+		self.set_title(title)
