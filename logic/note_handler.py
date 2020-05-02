@@ -19,5 +19,5 @@ def save_note(note):
 		json.dump(notes, notes_data, indent='\t')
 
 
-def set_title(note, title):
-	note['title'] = title
+def set_note_field(note, field, value):
+	note[field] = value

@@ -29,7 +29,7 @@ class QtNote(QLabel, Note):
 		self.setGraphicsEffect(shadow)
 
 	def update_content(self):
-		return self.setText('<b>{0}</b><br><br>{1}'.format(self.note['title'], self.note['content']))
+		return self.setText('<b>{0}</b>\n\n{1}'.format(self.note['title'], self.note['content']).replace('\n', '<br>'))
 
 	def mouseDoubleClickEvent(self, ev: PySide2.QtGui.QMouseEvent):
 		super().mouseReleaseEvent(ev)
