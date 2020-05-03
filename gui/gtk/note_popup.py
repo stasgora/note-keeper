@@ -5,10 +5,14 @@ from logic.note_handler import set_note_field
 
 
 class GtkNotePopup(Gtk.Dialog, NotePopup):
-	def __init__(self, note, parent):
-		Gtk.Dialog.__init__(self, self.get_popup_title(note), parent, 0,
-		                    (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_REMOVE, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.APPLY))
+	def __init__(self, note, parent, is_new):
+		self.is_new = is_new
 		self.note = note
+		Gtk.Dialog.__init__(self, self.get_popup_title(note), parent, 0)
+		self.add_action_widget(Gtk.Button("Anuluj"), Gtk.ResponseType.CANCEL)
+		if not self.is_new:
+			self.add_action_widget(Gtk.Button("Usuń"), Gtk.ResponseType.CANCEL)
+		self.add_action_widget(Gtk.Button("Zapisz"), Gtk.ResponseType.APPLY)
 		width = 400
 		height = 300
 		self.set_default_size(width, height)

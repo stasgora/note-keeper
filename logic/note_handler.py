@@ -11,6 +11,10 @@ def load_note():
 		return note
 
 
+def create_note():
+	return {"title": "", "content": ""}
+
+
 def save_note(note):
 	with open(note_file, 'r') as notes_data:
 		notes = json.load(notes_data)

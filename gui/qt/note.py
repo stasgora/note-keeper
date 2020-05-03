@@ -34,5 +34,5 @@ class QtNote(QLabel, Note):
 	def mouseDoubleClickEvent(self, ev: PySide2.QtGui.QMouseEvent):
 		super().mouseReleaseEvent(ev)
 		edit_note = self.note.copy()
-		if QtNotePopup(edit_note, self).exec_() == QDialog.Accepted:
+		if QtNotePopup(edit_note, self, is_new=False).exec_() == QDialog.Accepted:
 			self.update_note(edit_note)

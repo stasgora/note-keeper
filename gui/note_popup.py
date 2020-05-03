@@ -9,9 +9,6 @@ class NotePopup(object):
 	def set_window_title(self, title):
 		pass  # abstract
 
-	@staticmethod
-	def get_popup_title(note):
-		if note is None:
-			return 'Nowa notatka'
-		else:
-			return 'Edycja notatki' + (' "{0}"'.format(note['title']) if note['title'] else '')
+	def get_popup_title(self, note):
+		title = (' "{0}"'.format(note['title']) if note['title'] else '')
+		return ('Nowa notatka' if self.is_new else 'Edycja notatki') + title

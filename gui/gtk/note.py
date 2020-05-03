@@ -29,7 +29,7 @@ class GtkNote(Gtk.EventBox, Note):
 	def button_event(self, widget, event):
 		if event.type == Gdk.EventType.DOUBLE_BUTTON_PRESS:  # _2BUTTON_PRESS
 			edit_note = self.note.copy()
-			popup = GtkNotePopup(edit_note, self.window)
+			popup = GtkNotePopup(edit_note, self.window, is_new=False)
 			if popup.run() == Gtk.ResponseType.APPLY:
 				self.update_note(edit_note)
 			popup.destroy()

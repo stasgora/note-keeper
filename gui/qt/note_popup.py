@@ -7,9 +7,10 @@ from logic.note_handler import set_note_field
 
 
 class QtNotePopup(QDialog, NotePopup):
-	def __init__(self, note, parent):
-		super(QtNotePopup, self).__init__(parent)
+	def __init__(self, note, parent, is_new):
+		self.is_new = is_new
 		self.note = note
+		super(QtNotePopup, self).__init__(parent)
 		width = 400
 		height = 300
 		self.set_window_title(self.get_popup_title(note))
@@ -46,9 +47,10 @@ class QtNotePopup(QDialog, NotePopup):
 		cancel_button = QPushButton('Anuluj')
 		cancel_button.clicked.connect(lambda: self.reject())
 		container.addWidget(cancel_button, alignment=Qt.AlignRight)
-		remove_button = QPushButton('Usuń')
-		remove_button.clicked.connect(lambda: self.reject())
-		container.addWidget(remove_button, alignment=Qt.AlignRight)
+		if not self.is_new:
+			remove_button = QPushButton('Usuń')
+			remove_button.clicked.connect(lambda: self.reject())
+			container.addWidget(remove_button, alignment=Qt.AlignRight)
 		save_button = QPushButton('Zapisz')
 		save_button.clicked.connect(lambda: self.accept())
 		container.addWidget(save_button, alignment=Qt.AlignRight)

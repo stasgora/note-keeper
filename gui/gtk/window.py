@@ -1,9 +1,10 @@
 from gui.gtk.note import GtkNote
+from gui.gtk.note_popup import GtkNotePopup
 from gui.window import Window
 
 from gi.repository import Gtk, Gdk
 
-from logic.note_handler import load_note
+from logic.note_handler import load_note, create_note
 
 
 class GtkWindow(Window, Gtk.ApplicationWindow):
@@ -11,10 +12,34 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 		Gtk.Window.__init__(self)
 		self.layout = Gtk.VBox()
 		self.add(self.layout)
+		self.draw_menu_bar()
 
 		self.notes = Gtk.Grid()
 		self.draw_notes()
 		self.apply_styles()
+
+	def draw_menu_bar(self):
+		menu_bar = Gtk.MenuBar()
+		menu_item = Gtk.MenuItem('Menu')
+		menu = Gtk.Menu()
+		menu_item.set_submenu(menu)
+
+		new_note = Gtk.MenuItem('Nowa notatka')
+		new_note.connect('button-press-event', lambda w, e: self.new_note_popup())
+		menu.append(new_note)
+
+		about = Gtk.MenuItem('O programie')
+		about.connect('button-press-event', lambda w, e: self.new_note_popup())
+		menu.append(about)
+
+		menu_bar.add(menu_item)
+		self.layout.pack_start(menu_bar, False, False, 0)
+
+	def new_note_popup(self):
+		popup = GtkNotePopup(create_note(), self, is_new=True)
+		if popup.run() == Gtk.ResponseType.APPLY:
+			pass
+		popup.destroy()
 
 	def draw_notes(self):
 		self.layout.pack_end(self.notes, True, True, 0)
