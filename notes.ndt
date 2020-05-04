@@ -1,12 +1,12 @@
-[
-	{
+{
+	"1": {
 		"title": "Note",
 		"content": "This is a test note, don't read me!",
 		"id": 1
 	},
-	{
-		"title": "fsd",
-		"content": "fsdsfddfs",
+	"2": {
+		"title": "fds",
+		"content": "fsdfsf",
 		"id": 2
 	}
-]
+}
