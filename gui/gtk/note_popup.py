@@ -11,7 +11,7 @@ class GtkNotePopup(Gtk.Dialog, NotePopup):
 		Gtk.Dialog.__init__(self, self.get_popup_title(note), parent, 0)
 		self.add_action_widget(Gtk.Button("Anuluj"), Gtk.ResponseType.CANCEL)
 		if not self.is_new:
-			self.add_action_widget(Gtk.Button("Usuń"), Gtk.ResponseType.CANCEL)
+			self.add_action_widget(Gtk.Button("Usuń"), Gtk.ResponseType.DELETE_EVENT)
 		self.add_action_widget(Gtk.Button("Zapisz"), Gtk.ResponseType.APPLY)
 		width = 400
 		height = 300

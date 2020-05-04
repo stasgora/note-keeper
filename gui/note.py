@@ -1,4 +1,4 @@
-from logic.note_handler import save_note
+from logic.note_handler import update_note
 
 
 class Note(object):
@@ -8,4 +8,4 @@ class Note(object):
 	def update_note(self, note):
 		self.note = note
 		self.update_content()
-		save_note(self.note)
+		update_note(self.note)

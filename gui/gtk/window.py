@@ -4,12 +4,13 @@ from gui.window import Window
 
 from gi.repository import Gtk, Gdk
 
-from logic.note_handler import load_note, create_note
+from logic.note_handler import *
 
 
 class GtkWindow(Window, Gtk.ApplicationWindow):
 	def __init__(self):
 		Gtk.Window.__init__(self)
+		load_notes()
 		self.layout = Gtk.VBox()
 		self.add(self.layout)
 		self.draw_menu_bar()
@@ -36,9 +37,10 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 		self.layout.pack_start(menu_bar, False, False, 0)
 
 	def new_note_popup(self):
-		popup = GtkNotePopup(create_note(), self, is_new=True)
+		note = create_note()
+		popup = GtkNotePopup(note, self, is_new=True)
 		if popup.run() == Gtk.ResponseType.APPLY:
-			pass
+			update_note(note)
 		popup.destroy()
 
 	def draw_notes(self):

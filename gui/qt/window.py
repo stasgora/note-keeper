@@ -5,12 +5,13 @@ from PySide2.QtWidgets import *
 from gui.qt.note import QtNote
 from gui.qt.note_popup import QtNotePopup
 from gui.window import Window
-from logic.note_handler import load_note, create_note
+from logic.note_handler import *
 
 
 class QtWindow(Window, QWidget):
 	def __init__(self, application):
 		QWidget.__init__(self)
+		load_notes()
 		self.application = application
 
 		self.layout = QVBoxLayout()
@@ -41,8 +42,9 @@ class QtWindow(Window, QWidget):
 		menu_bar.addMenu(menu)
 
 	def new_note_popup(self):
-		if QtNotePopup(create_note(), self, is_new=True).exec_() == QDialog.Accepted:
-			pass
+		note = create_note()
+		if QtNotePopup(note, self, is_new=True).exec_() == QDialog.Accepted:
+			update_note(note)
 
 	def draw_notes(self):
 		self.layout.addLayout(self.notes)

@@ -3,7 +3,7 @@ from PySide2.QtCore import Qt
 from PySide2.QtWidgets import *
 
 from gui.note_popup import NotePopup
-from logic.note_handler import set_note_field
+from logic.note_handler import set_note_field, delete_note
 
 
 class QtNotePopup(QDialog, NotePopup):
@@ -45,16 +45,20 @@ class QtNotePopup(QDialog, NotePopup):
 		container = QHBoxLayout()
 		container.addStretch(1)
 		cancel_button = QPushButton('Anuluj')
-		cancel_button.clicked.connect(lambda: self.reject())
+		cancel_button.clicked.connect(self.reject)
 		container.addWidget(cancel_button, alignment=Qt.AlignRight)
 		if not self.is_new:
 			remove_button = QPushButton('Usuń')
-			remove_button.clicked.connect(lambda: self.reject())
+			remove_button.clicked.connect(self.reject)
 			container.addWidget(remove_button, alignment=Qt.AlignRight)
 		save_button = QPushButton('Zapisz')
-		save_button.clicked.connect(lambda: self.accept())
+		save_button.clicked.connect(self.return_delete)
 		container.addWidget(save_button, alignment=Qt.AlignRight)
 		self.layout.addLayout(container)
+
+	def return_delete(self):
+		delete_note(self.note)
+		self.reject()
 
 	def keyPressEvent(self, event):
 		if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:

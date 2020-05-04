@@ -2,6 +2,7 @@ from gi.repository import Gtk, Gdk
 
 from gui.gtk.note_popup import GtkNotePopup
 from gui.note import Note
+from logic.note_handler import delete_note
 
 
 class GtkNote(Gtk.EventBox, Note):
@@ -32,4 +33,6 @@ class GtkNote(Gtk.EventBox, Note):
 			popup = GtkNotePopup(edit_note, self.window, is_new=False)
 			if popup.run() == Gtk.ResponseType.APPLY:
 				self.update_note(edit_note)
+			elif popup.run() == Gtk.ResponseType.DELETE_EVENT:
+				delete_note(self.note)
 			popup.destroy()
