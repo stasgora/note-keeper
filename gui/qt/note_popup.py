@@ -49,10 +49,10 @@ class QtNotePopup(QDialog, NotePopup):
 		container.addWidget(cancel_button, alignment=Qt.AlignRight)
 		if not self.is_new:
 			remove_button = QPushButton('Usuń')
-			remove_button.clicked.connect(self.reject)
+			remove_button.clicked.connect(self.return_delete)
 			container.addWidget(remove_button, alignment=Qt.AlignRight)
 		save_button = QPushButton('Zapisz')
-		save_button.clicked.connect(self.return_delete)
+		save_button.clicked.connect(self.accept)
 		container.addWidget(save_button, alignment=Qt.AlignRight)
 		self.layout.addLayout(container)
 

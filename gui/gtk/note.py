@@ -11,6 +11,7 @@ class GtkNote(Gtk.EventBox, Note):
 		self.note = note
 		self.window = window
 		self.label = Gtk.Label()
+		self.label.set_xalign(0)
 		self.update_content()
 		self.add(self.label)
 		# self.note.set_selectable(True)

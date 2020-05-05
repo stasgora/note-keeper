@@ -27,6 +27,7 @@ class QtNote(QLabel, Note):
 		shadow.setBlurRadius(8)
 		shadow.setOffset(3, 6)
 		self.setGraphicsEffect(shadow)
+		self.show()
 
 	def update_content(self):
 		return self.setText('<b>{0}</b>\n\n{1}'.format(self.note['title'], self.note['content']).replace('\n', '<br>'))

@@ -1,5 +1,6 @@
 import sys
 
+from PySide2.QtCore import Qt
 from PySide2.QtWidgets import *
 
 from gui.qt.note import QtNote
@@ -15,13 +16,10 @@ class QtWindow(Window, QWidget):
 		self.application = application
 
 		self.layout = QVBoxLayout()
+		self.layout.setAlignment(Qt.AlignTop)
 		self.setLayout(self.layout)
 
 		self.draw_menu_bar()
-
-		self.notes = QGridLayout()
-		self.layout.addLayout(self.notes)
-		self.layout.addStretch(1)
 		self.draw_notes()
 
 	def draw_menu_bar(self):
@@ -47,11 +45,12 @@ class QtWindow(Window, QWidget):
 		note = create_note()
 		if QtNotePopup(note, self, is_new=True).exec_() == QDialog.Accepted:
 			update_note(note)
+			self.layout.addWidget(QtNote(note))
 
 	def draw_notes(self):
 		notes = get_notes()
 		for i in range(len(notes)):
-			self.notes.addWidget(QtNote(notes[i]), i, 0)
+			self.layout.addWidget(QtNote(notes[i]))
 
 	def resize(self, width, height):
 		QWidget.resize(self, width, height)
