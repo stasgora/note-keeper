@@ -21,6 +21,9 @@ class QtWindow(Window, QWidget):
 		self.setLayout(self.layout)
 
 		self.draw_menu_bar()
+
+		self.note_widget = QWidget()
+		self.note_layout = QVBoxLayout(self.note_widget)
 		self.draw_notes()
 
 	def draw_menu_bar(self):
@@ -47,13 +50,19 @@ class QtWindow(Window, QWidget):
 		note = create_note()
 		if QtNotePopup(note, self, is_new=True).exec_() == QDialog.Accepted:
 			update_note(note)
-			self.layout.addWidget(QtNote(note, self))
-			self.layout.update()
+			self.note_layout.addWidget(QtNote(note, self))
+			self.note_layout.update()
 
 	def draw_notes(self):
+		note_area = QScrollArea()
+		note_area.setWidgetResizable(True)
+		self.layout.addWidget(note_area)
+		note_area.setWidget(self.note_widget)
+		self.note_layout.setParent(self.note_widget)
+		self.note_layout.setAlignment(Qt.AlignTop)
 		notes = get_notes()
 		for i in range(len(notes)):
-			self.layout.addWidget(QtNote(notes[i], self))
+			self.note_layout.addWidget(QtNote(notes[i], self))
 
 	def resize(self, width, height):
 		QWidget.resize(self, width, height)

@@ -16,6 +16,7 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 		self.add(self.layout)
 		self.draw_menu_bar()
 
+		self.note_layout = Gtk.VBox()
 		self.draw_notes()
 		self.apply_styles()
 
@@ -46,14 +47,17 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 		popup = GtkNotePopup(note, self, is_new=True)
 		if popup.run() == Gtk.ResponseType.APPLY:
 			update_note(note)
-			self.layout.pack_start(GtkNote(note, self), False, False, 0)
-			self.layout.show_all()
+			self.note_layout.pack_start(GtkNote(note, self), False, False, 0)
+			self.note_layout.show_all()
 		popup.destroy()
 
 	def draw_notes(self):
+		scroll_area = Gtk.ScrolledWindow()
+		self.layout.pack_start(scroll_area, True, True, 0)
+		scroll_area.add(self.note_layout)
 		notes = get_notes()
 		for i in range(len(notes)):
-			self.layout.pack_start(GtkNote(notes[i], self), False, False, 0)
+			self.note_layout.pack_start(GtkNote(notes[i], self), False, False, 0)
 
 	def apply_styles(self):
 		css = Gtk.CssProvider()

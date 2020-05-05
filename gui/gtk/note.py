@@ -36,5 +36,5 @@ class GtkNote(Gtk.EventBox, Note):
 				self.update_note(edit_note)
 			elif popup.run() == Gtk.ResponseType.DELETE_EVENT:
 				delete_note(self.note)
-				self.window.layout.remove(self)
+				self.window.note_layout.remove(self)
 			popup.destroy()
