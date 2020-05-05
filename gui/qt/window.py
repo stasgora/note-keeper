@@ -17,9 +17,11 @@ class QtWindow(Window, QWidget):
 		self.layout = QVBoxLayout()
 		self.setLayout(self.layout)
 
-		self.notes = QGridLayout()
-
 		self.draw_menu_bar()
+
+		self.notes = QGridLayout()
+		self.layout.addLayout(self.notes)
+		self.layout.addStretch(1)
 		self.draw_notes()
 
 	def draw_menu_bar(self):
@@ -47,13 +49,9 @@ class QtWindow(Window, QWidget):
 			update_note(note)
 
 	def draw_notes(self):
-		self.layout.addLayout(self.notes)
-		self.layout.addStretch(1)
-		self.notes.setMargin(5)
-		#self.notes.setColumnMinimumWidth(20)
-		#self.notes.setRowMinimumHeight(20)
-
-		self.notes.addWidget(QtNote(load_note()), 0, 0)
+		notes = get_notes()
+		for i in range(len(notes)):
+			self.notes.addWidget(QtNote(notes[i]), i, 0)
 
 	def resize(self, width, height):
 		QWidget.resize(self, width, height)

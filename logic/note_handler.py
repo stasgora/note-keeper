@@ -26,6 +26,10 @@ def load_note(index=0):
 	return notes_data[str(index)]
 
 
+def get_notes():
+	return list(notes_data.values())
+
+
 def create_note():
 	global note_index_counter
 	note = {"title": "", "content": "", 'id': str(note_index_counter)}

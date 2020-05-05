@@ -45,7 +45,9 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 
 	def draw_notes(self):
 		self.layout.pack_end(self.notes, True, True, 0)
-		self.notes.attach(GtkNote(load_note(), self), 0, 0, 1, 1)
+		notes = get_notes()
+		for i in range(len(notes)):
+			self.notes.attach(GtkNote(notes[i], self), 0, i, 1, 1)
 
 	def apply_styles(self):
 		css = Gtk.CssProvider()
