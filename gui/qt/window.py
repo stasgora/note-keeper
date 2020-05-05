@@ -45,12 +45,13 @@ class QtWindow(Window, QWidget):
 		note = create_note()
 		if QtNotePopup(note, self, is_new=True).exec_() == QDialog.Accepted:
 			update_note(note)
-			self.layout.addWidget(QtNote(note))
+			self.layout.addWidget(QtNote(note, self))
+			self.layout.update()
 
 	def draw_notes(self):
 		notes = get_notes()
 		for i in range(len(notes)):
-			self.layout.addWidget(QtNote(notes[i]))
+			self.layout.addWidget(QtNote(notes[i], self))
 
 	def resize(self, width, height):
 		QWidget.resize(self, width, height)

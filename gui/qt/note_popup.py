@@ -10,6 +10,7 @@ class QtNotePopup(QDialog, NotePopup):
 	def __init__(self, note, parent, is_new):
 		self.is_new = is_new
 		self.note = note
+		self.note_removed = False
 		super(QtNotePopup, self).__init__(parent)
 		width = 400
 		height = 300
@@ -58,6 +59,7 @@ class QtNotePopup(QDialog, NotePopup):
 
 	def return_delete(self):
 		delete_note(self.note)
+		self.note_removed = True
 		self.reject()
 
 	def keyPressEvent(self, event):
