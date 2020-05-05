@@ -3,7 +3,7 @@ from PySide2.QtCore import Qt
 from PySide2.QtWidgets import *
 
 from gui.note_popup import NotePopup
-from logic.note_handler import set_note_field, delete_note
+from common.note_handler import set_note_field, delete_note
 
 
 class QtNotePopup(QDialog, NotePopup):

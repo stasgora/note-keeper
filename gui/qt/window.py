@@ -3,10 +3,11 @@ import sys
 from PySide2.QtCore import Qt
 from PySide2.QtWidgets import *
 
+from gui.qt.about_popup import QtAboutPopup
 from gui.qt.note import QtNote
 from gui.qt.note_popup import QtNotePopup
 from gui.window import Window
-from logic.note_handler import *
+from common.note_handler import *
 
 
 class QtWindow(Window, QWidget):
@@ -30,10 +31,11 @@ class QtWindow(Window, QWidget):
 		new_note = QAction('Nowa notatka', self)
 		new_note.setShortcut('Ctrl+N')
 		menu.addAction(new_note)
-		menu.triggered.connect(self.new_note_popup)
+		new_note.triggered.connect(self.new_note_popup)
 
 		about = QAction('O programie', self)
 		menu.addAction(about)
+		about.triggered.connect(QtAboutPopup(self).exec_)
 
 		quit = QAction('Zakończ', self)
 		quit.setShortcut('Ctrl+Q')

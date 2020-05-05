@@ -1,10 +1,11 @@
+from gui.gtk.about_popup import GtkAboutPopup
 from gui.gtk.note import GtkNote
 from gui.gtk.note_popup import GtkNotePopup
 from gui.window import Window
 
 from gi.repository import Gtk, Gdk
 
-from logic.note_handler import *
+from common.note_handler import *
 
 
 class GtkWindow(Window, Gtk.ApplicationWindow):
@@ -29,11 +30,16 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 		menu.append(new_note)
 
 		about = Gtk.MenuItem('O programie')
-		about.connect('button-press-event', lambda w, e: self.new_note_popup())
+		about.connect('button-press-event', lambda w, e: self.about_popup())
 		menu.append(about)
 
 		menu_bar.add(menu_item)
 		self.layout.pack_start(menu_bar, False, False, 0)
+
+	def about_popup(self):
+		popup = GtkAboutPopup(self)
+		popup.run()
+		popup.destroy()
 
 	def new_note_popup(self):
 		note = create_note()
@@ -60,7 +66,7 @@ class GtkWindow(Window, Gtk.ApplicationWindow):
 				margin: 1em;
 				box-shadow: 0 3px 6px rgba(0,0,0,0.4);
 			}
-			.note-field {
+			.note-field, .about-field {
 				padding: .8em;
 			}
 			""")

@@ -1,4 +1,4 @@
-from logic.note_handler import update_note
+from common.note_handler import update_note
 
 
 class Note(object):

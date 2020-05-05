@@ -1,4 +1,4 @@
-from logic.note_handler import set_note_field
+from common.note_handler import set_note_field
 
 
 class NotePopup(object):

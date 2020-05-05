@@ -15,6 +15,6 @@ if __name__ == "__main__":
 		print("Wybierz bibliotekę graficzną poprzez podanie argumentu: 'Qt' lub 'Gtk'")
 		exit()
 
-	window.resize(600, 600)
+	window.resize(500, 700)
 	window.set_title("Notatki")
 	window.show()

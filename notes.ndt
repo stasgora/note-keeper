@@ -1,7 +1,12 @@
 {
 	"0": {
-		"title": "Notes",
-		"content": "This is a test note, don't read me!",
+		"title": "Testowa notatka",
+		"content": "Tre\u015b\u0107 notatki",
 		"id": "0"
+	},
+	"1": {
+		"title": "Lista zada\u0144 do wykonania",
+		"content": "- Zapisa\u0107\n- Przeczyta\u0107\n- Kupi\u0107\n- Sprzeda\u0107",
+		"id": "1"
 	}
 }

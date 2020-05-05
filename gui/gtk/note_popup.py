@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 
 from gui.note_popup import NotePopup
-from logic.note_handler import set_note_field
+from common.note_handler import set_note_field
 
 
 class GtkNotePopup(Gtk.Dialog, NotePopup):

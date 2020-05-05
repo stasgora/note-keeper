@@ -2,7 +2,7 @@ from gi.repository import Gtk, Gdk
 
 from gui.gtk.note_popup import GtkNotePopup
 from gui.note import Note
-from logic.note_handler import delete_note
+from common.note_handler import delete_note
 
 
 class GtkNote(Gtk.EventBox, Note):
