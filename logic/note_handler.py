@@ -16,38 +16,31 @@ def load_notes():
 		data = json.load(data)
 		for note in data.values():
 			notes_data[str(note_index_counter)] = note
-			notes_data[str(note_index_counter)]['id'] = note_index_counter
+			notes_data[str(note_index_counter)]['id'] = str(note_index_counter)
 			note_index_counter += 1
 
 
 def load_note(index=0):
-	note = next((note for key, note in notes_data.items() if key == str(index)), None)
-	if note is None:
+	if str(index) not in notes_data:
 		print('Nie znaleziono notatki o indeksie {0}'.format(index))
-	return note
+	return notes_data[str(index)]
 
 
 def create_note():
 	global note_index_counter
-	note = {"title": "", "content": "", 'id': note_index_counter}
+	note = {"title": "", "content": "", 'id': str(note_index_counter)}
 	notes_data[str(note_index_counter)] = note
 	note_index_counter += 1
 	return note
 
 
 def delete_note(note):
-	for i in range(len(notes_data)):
-		if notes_data[str(i)]['id'] == note['id']:
-			del notes_data[str(i)]
-			break
+	del notes_data[note['id']]
 	save_notes()
 
 
 def update_note(note):
-	for i in range(len(notes_data)):
-		if notes_data[str(i)]['id'] == note['id']:
-			notes_data[str(i)] = note
-			break
+	notes_data[note['id']] = note
 	save_notes()
 
 

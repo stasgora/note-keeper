@@ -1,12 +1,17 @@
 {
-	"1": {
-		"title": "Note",
+	"0": {
+		"title": "Notes",
 		"content": "This is a test note, don't read me!",
-		"id": 1
+		"id": "0"
 	},
-	"2": {
+	"1": {
 		"title": "fds",
 		"content": "fsdfsf",
-		"id": 2
+		"id": "1"
+	},
+	"2": {
+		"title": "we",
+		"content": "ses",
+		"id": "2"
 	}
 }
