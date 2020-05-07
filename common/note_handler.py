@@ -11,7 +11,7 @@ def load_notes():
 	global note_index_counter
 	if not os.path.isfile(note_file):
 		with open(note_file, 'w+') as data:
-			json.dump([], data)
+			json.dump({}, data)
 	with open(note_file, 'r') as data:
 		data = json.load(data)
 		for note in data.values():
