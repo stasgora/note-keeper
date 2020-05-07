@@ -15,4 +15,5 @@ class GtkAboutPopup(Gtk.Dialog):
 		label.get_style_context().add_class('about-field')
 		label.set_markup(get_about_text())
 		layout.add(label)
+		label.set_size_request(400, 400)
 		self.show_all()

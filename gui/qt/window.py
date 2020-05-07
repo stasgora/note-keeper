@@ -39,11 +39,6 @@ class QtWindow(Window, QWidget):
 		about = QAction('O programie', self)
 		menu.addAction(about)
 		about.triggered.connect(QtAboutPopup(self).exec_)
-
-		quit = QAction('Zakończ', self)
-		quit.setShortcut('Ctrl+Q')
-		quit.triggered.connect(self.close)
-		menu.addAction(quit)
 		menu_bar.addMenu(menu)
 
 	def new_note_popup(self):

@@ -58,6 +58,12 @@ class QtNotePopup(QDialog, NotePopup):
 		self.layout.addLayout(container)
 
 	def return_delete(self):
+		msg_box = QMessageBox()
+		msg_box.setText("Jesteś pewien?")
+		msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+		msg_box.setDefaultButton(QMessageBox.Yes)
+		if msg_box.exec() == QMessageBox.No:
+			return
 		delete_note(self.note)
 		self.note_removed = True
 		self.reject()
