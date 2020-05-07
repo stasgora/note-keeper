@@ -33,6 +33,7 @@ class GtkNotePopup(Gtk.Dialog, NotePopup):
 		scroll_view = Gtk.ScrolledWindow()
 		scroll_view.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
 		note_field = Gtk.TextView()
+		note_field.set_wrap_mode(True)
 		scroll_view.add(note_field)
 		scroll_view.get_style_context().add_class('note-field')
 		buffer = note_field.get_buffer()

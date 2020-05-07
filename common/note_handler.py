@@ -31,11 +31,7 @@ def get_notes():
 
 
 def create_note():
-	global note_index_counter
-	note = {"title": "", "content": "", 'id': str(note_index_counter)}
-	notes_data[str(note_index_counter)] = note
-	note_index_counter += 1
-	return note
+	return {"title": "", "content": ""}
 
 
 def delete_note(note):
@@ -44,6 +40,10 @@ def delete_note(note):
 
 
 def update_note(note):
+	global note_index_counter
+	if 'id' not in note:
+		note['id'] = str(note_index_counter)
+		note_index_counter += 1
 	notes_data[note['id']] = note
 	save_notes()
 

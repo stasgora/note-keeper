@@ -36,7 +36,6 @@ class QtNotePopup(QDialog, NotePopup):
 
 	def add_note_field(self):
 		note_field = QPlainTextEdit()
-		note_field.setLineWrapMode(QPlainTextEdit.NoWrap)
 		note_field.setPlaceholderText('Notatka')
 		note_field.setPlainText(self.note['content'])
 		note_field.textChanged.connect(lambda: set_note_field(self.note, 'content', note_field.toPlainText()))
@@ -46,6 +45,7 @@ class QtNotePopup(QDialog, NotePopup):
 		container = QHBoxLayout()
 		container.addStretch(1)
 		cancel_button = QPushButton('Anuluj')
+		cancel_button.setDefault(True)
 		cancel_button.clicked.connect(self.reject)
 		container.addWidget(cancel_button, alignment=Qt.AlignRight)
 		if not self.is_new:
@@ -58,12 +58,6 @@ class QtNotePopup(QDialog, NotePopup):
 		self.layout.addLayout(container)
 
 	def return_delete(self):
-		msg_box = QMessageBox()
-		msg_box.setText("Jesteś pewien?")
-		msg_box.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-		msg_box.setDefaultButton(QMessageBox.Yes)
-		if msg_box.exec() == QMessageBox.No:
-			return
 		delete_note(self.note)
 		self.note_removed = True
 		self.reject()
