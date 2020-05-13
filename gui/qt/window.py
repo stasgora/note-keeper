@@ -1,7 +1,7 @@
 import sys
 
-from PySide2.QtCore import Qt
-from PySide2.QtWidgets import *
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import *
 
 from gui.qt.about_popup import QtAboutPopup
 from gui.qt.note import QtNote

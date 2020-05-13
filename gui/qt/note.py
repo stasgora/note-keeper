@@ -1,6 +1,7 @@
-import PySide2
-from PySide2.QtGui import QColor, Qt
-from PySide2.QtWidgets import QLabel, QGraphicsDropShadowEffect, QDialog
+import PyQt5
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QLabel, QGraphicsDropShadowEffect, QDialog
 
 from gui.note import Note
 from gui.qt.note_popup import QtNotePopup
@@ -32,7 +33,7 @@ class QtNote(QLabel, Note):
 	def update_content(self):
 		return self.setText('<b>{0}</b>\n\n{1}'.format(self.note['title'], self.note['content']).replace('\n', '<br>'))
 
-	def mouseDoubleClickEvent(self, ev: PySide2.QtGui.QMouseEvent):
+	def mouseDoubleClickEvent(self, ev: PyQt5.QtGui.QMouseEvent):
 		super().mouseReleaseEvent(ev)
 		edit_note = self.note.copy()
 		popup = QtNotePopup(edit_note, self, is_new=False)

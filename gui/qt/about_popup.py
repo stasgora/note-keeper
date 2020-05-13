@@ -1,5 +1,5 @@
-from PySide2.QtCore import Qt
-from PySide2.QtWidgets import QVBoxLayout, QDialog, QLabel
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QVBoxLayout, QDialog, QLabel
 
 from common.about import get_about_text
 
