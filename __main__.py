@@ -1,7 +1,7 @@
 import sys
 import gi
 gi.require_version("Gtk", "3.0")
-from PySide2.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication
 
 from gui.qt.window import QtWindow
 from gui.gtk.window import GtkWindow
